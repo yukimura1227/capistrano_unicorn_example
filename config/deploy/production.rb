@@ -3,7 +3,7 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 set :stage, :production
-server '192.168.55.30', user: 'test_user', roles: %w{app db web} # TODO: 接続先情報および、userは適宜変更する。
+server '192.168.55.30', user: 'vagrant', roles: %w{app db web} # TODO: 接続先情報および、userは適宜変更する。
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
