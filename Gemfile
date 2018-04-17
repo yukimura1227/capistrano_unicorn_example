@@ -93,8 +93,8 @@ end
 group :development do
   gem 'capistrano', '3.4.0'
   gem 'capistrano-rails'
-  gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
+  gem 'capistrano-rbenv'
   gem 'capistrano3-unicorn'
 end
 
