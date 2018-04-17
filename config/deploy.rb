@@ -1,8 +1,14 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-set :application, 'my_app_name'
-set :repo_url, 'git@example.com:me/my_repo.git'
+my_app_name = 'capistrano_unicorn_example' # TODO: 適宜名称変更
+set :application, my_app_name
+set :repo_url, 'git@github.com:yukimura1227/capistrano_unicorn_example.git'
+
+set :rbenv_type, :system # :system or :user
+
+set :unicorn_config_path, -> { File.join(current_path, 'config', 'unicorn.rb') }
+set :deploy_to, "~/#{my_app_name}"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -26,7 +32,7 @@ set :repo_url, 'git@example.com:me/my_repo.git'
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 
 # Default value for linked_dirs is []
-# set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -35,6 +41,14 @@ set :repo_url, 'git@example.com:me/my_repo.git'
 # set :keep_releases, 5
 
 namespace :deploy do
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      invoke 'unicorn:restart'
+    end
+  end
+
+  after :publishing, :restart
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
