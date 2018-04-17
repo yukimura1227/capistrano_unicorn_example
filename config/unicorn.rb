@@ -1,7 +1,8 @@
 # paths
-app_path = '~/capistrano_unicorn' # TODO 適宜修正する
+rails_root = File.expand_path('../', __FILE__)
+app_path = rails_root
 working_directory "#{app_path}/current"
-pid               "#{app_path}/current/tmp/pids/unicorn.pid"
+pid File.expand_path('../tmp/pids/unicorn.pid', __FILE__)
 
 # listen
 listen '/tmp/unicorn.socket', :backlog => 64
