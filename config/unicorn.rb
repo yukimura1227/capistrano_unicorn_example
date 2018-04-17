@@ -1,7 +1,7 @@
 # paths
 rails_root = File.expand_path('../', __FILE__)
 app_path = rails_root
-working_directory "#{app_path}/current"
+working_directory app_path
 pid File.expand_path('../tmp/pids/unicorn.pid', __FILE__)
 
 # listen
