@@ -1,4 +1,4 @@
-rails_root = File.expand_path('../', __FILE__)
+rails_root = File.expand_path('../../', __FILE__)
 working_directory rails_root
 
 worker_processes 2
