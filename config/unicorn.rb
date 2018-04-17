@@ -1,5 +1,5 @@
 rails_root = File.expand_path('../', __FILE__)
-working_directory rails_root + '/current'
+working_directory rails_root
 
 worker_processes 2
 preload_app true
