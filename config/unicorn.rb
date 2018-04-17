@@ -4,7 +4,8 @@ working_directory rails_root
 worker_processes 2
 preload_app true
 timeout 30
-listen '/tmp/unicorn.sock', :backlog => 64
+listen 8080
+# listen '/tmp/unicorn.sock', :backlog => 64
 pid File.expand_path('../../tmp/pids/unicorn.pid', __FILE__)
 
 stderr_path "#{rails_root}/log/unicorn.stderr.log"
